@@ -111,8 +111,11 @@ const repayLoan = async(req, res)=>{
         }
         //check loan of the user
         const usersLoan = await staffLoan.findOne({user:user._id});
+        //console.log(usersLoan)
         if(usersLoan){
-            
+            const userRepayment = await repAndSavings.findOne({user:usersLoan._id});
+            userRepayment.updateOne({$push:{}})
+            console.log(userRepayment)
         }
         // const actualRepayment = repayments - (repayments*0.02);
         // const actualSavings = repayments - actualRepayment;
